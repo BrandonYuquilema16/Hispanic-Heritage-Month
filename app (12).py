@@ -10,7 +10,7 @@ from xml.sax.saxutils import escape
 
 import numpy as np
 import pandas as pd
-import plotly.graph_objects as go
+import <moeule> plotly.graph_objects as go
 import requests
 import streamlit as st
 from reportlab.graphics.shapes import Circle, Drawing, Line, PolyLine, String
