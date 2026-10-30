@@ -10,7 +10,7 @@ from xml.sax.saxutils import escape
 
 import numpy as np
 import pandas as pd
-import <moeule> plotly.graph_objects as go
+import plotly.graph_objects as go
 import requests
 import streamlit as st
 from reportlab.graphics.shapes import Circle, Drawing, Line, PolyLine, String
@@ -348,9 +348,9 @@ def pdf_report(raw, working, poly, r2, rmse, mae, degree, edited, predictions):
     report.append(table)
     report.append(Spacer(1, 12))
     paragraph("Interpretation, history, and uncertainty", "Heading2")
-    paragraph("This is GDP, the annual value of goods and services produced, not the net worth of Chile. Nominal GDP in USD changes with inflation, economic activity and exchange rates. Changes in copper markets, recessions, and other historical events may affect GDP, but the regression curve cannot establish their causes.")
-    paragraph("The historical modeling window begins in 1976 because the assignment selected that year, not because that is when Chile's economy began. The original World Bank values are preserved; any edits are clearly labeled as scenarios.")
-    paragraph("Polynomial models can overfit and extrapolate unrealistically. R-squared, RMSE and MAE here measure fit to the data used to train the model, not tested forecast accuracy. The 2026 value is not an official forecast.")
+    paragraph("This is GDP, the annual value of goods and services produced, not the net worth of Chile. Nominal GDP in USD changes with inflation, economic activity and exchange rates. Changes in copper prices and fiscal policy can affect the trend. A regression line can summarize the pattern but cannot explain every cause.")
+    paragraph("The historical modeling window begins in 1976 because the assignment selected that year, not because that is when Chile's economy began. The original World Bank values are preserved; any edited values are labeled as scenario-only and are not treated as official records.")
+    paragraph("Polynomial models can overfit and extrapolate unrealistically. R-squared, RMSE and MAE here measure fit to the data used to train the model, not tested forecast accuracy. The 2026 value is a mathematical estimate and should not be treated as a precise economic forecast.")
     paragraph(f"Official dataset: {SOURCE_PAGE}")
     doc.build(report)
     return out.getvalue()
@@ -475,7 +475,7 @@ if forecast_2026 < 0:
     st.error("The polynomial predicts a negative GDP for 2026, which is not economically meaningful. This shows a limitation of the chosen model.")
 
 st.header("5 · Interactive chart, moving year dot, and slope lines")
-st.write("**Drag the slider's handle** to move the gold dot along the graph, change the displayed year and GDP, and rotate the green tangent (slope) line. Hover over blue dots for actual historical GDP.")
+st.write("**Drag the slider's handle** to move the gold dot along the graph, change the displayed year and GDP, and rotate the green tangent (slope) line. Hover over blue dots for actual historical GDP values.**")
 chosen_year = st.slider("Move the cursor to choose a year", FIRST_YEAR, PREDICTION_YEAR, PREDICTION_YEAR, 1)
 extra_years = st.multiselect("Optional: show extra slope lines at these years", options=[1985, 1995, 2005, 2015, 2025], default=[])
 selected_x = chosen_year - FIRST_YEAR
